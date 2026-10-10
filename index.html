@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-Portfolio | Lucas Bony - ENSEEIHT MF2E</title>
     <style>
-        /* CSS simple, propre et moderne (Bleu & Blanc Ingénieur) */
         :root {
-            --primary: #1e3a8a; /* Bleu marine ingénieur */
-            --accent: #2563eb;  /* Bleu vif pour survol/liens */
-            --bg-light: #f8fafc; /* Fond gris/bleu très clair */
-            --card-bg: #ffffff; /* Fond des cartes blanc */
-            --text-dark: #1e293b; /* Texte foncé lisible */
-            --text-muted: #64748b;
-            --sidebar-width: 260px;
+            --primary: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --accent: #2563eb;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --sidebar-width: 270px;
         }
 
         * {
@@ -31,7 +31,40 @@
             line-height: 1.6;
         }
 
-        /* Menu latéral fixe */
+        /* Lang Switcher Top Right */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #cbd5e1;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Sidebar */
         #sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -40,22 +73,24 @@
             left: 0;
             background-color: var(--primary);
             color: #ffffff;
-            padding: 2rem 1.5rem;
+            padding: 2.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.05);
         }
 
         #sidebar h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 0.2rem;
+            letter-spacing: -0.5px;
         }
 
-        #sidebar p {
+        #sidebar p.subtitle {
             font-size: 0.85rem;
             color: #93c5fd;
             margin-bottom: 2rem;
+            font-weight: 500;
         }
 
         #sidebar nav ul {
@@ -63,53 +98,90 @@
         }
 
         #sidebar nav ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
         }
 
         #sidebar nav ul li a {
             color: #e0f2fe;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             display: block;
-            padding: 0.5rem 0.8rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            font-weight: 500;
         }
 
         #sidebar nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.15);
             color: #ffffff;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
-        /* Zone de contenu principal */
+        /* Main Content */
         main {
             margin-left: var(--sidebar-width);
-            padding: 3rem 4rem;
+            padding: 3.5rem 4rem;
             width: calc(100% - var(--sidebar-width));
-            max-width: 1000px;
+            max-width: 1050px;
         }
 
         section {
             background: var(--card-bg);
             padding: 2.5rem;
             margin-bottom: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 6px 25px -2px rgba(0, 0, 0, 0.08);
         }
 
         section h2 {
             color: var(--primary);
             font-size: 1.6rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         p {
             margin-bottom: 1rem;
             color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        /* Cards inside sections */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
 
         .btn {
@@ -117,10 +189,11 @@
             background-color: var(--accent);
             color: white;
             padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
             transition: background 0.2s;
         }
 
@@ -128,29 +201,45 @@
             background-color: var(--primary);
         }
 
-        /* Responsive sur mobile */
-        @media (max-width: 768px) {
+        .placeholder-box {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 850px) {
             body { flex-direction: column; }
             #sidebar { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0; width: 100%; padding: 1.5rem; }
+            main { margin-left: 0; width: 100%; padding: 2rem 1.5rem; }
+            .lang-switcher { top: 15px; right: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Menu Latéral -->
+    <!-- Language Selector -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('en')">🇬🇧 EN</button>
+        <button class="lang-btn" onclick="setLanguage('fr')">🇫🇷 FR</button>
+    </div>
+
+    <!-- Sidebar -->
     <aside id="sidebar">
         <div>
             <h2>Lucas Bony</h2>
-            <p>ENSEEIHT - MF2E (1ère année)</p>
+            <p class="subtitle">ENSEEIHT - MF2E (1st Year)</p>
             <nav>
                 <ul>
-                    <li><a href="#welcome">Welcome</a></li>
-                    <li><a href="#engineering">Engineering Course</a></li>
-                    <li><a href="#mobility">International Mobility</a></li>
-                    <li><a href="#sustainability">Sustainability & Engagement</a></li>
-                    <li><a href="#activities">Sport & Other Activities</a></li>
-                    <li><a href="#career">Career Development</a></li>
+                    <li><a href="#welcome" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
+                    <li><a href="#engineering" data-en="Engineering Course" data-fr="Formation d'Ingénieur">Engineering Course</a></li>
+                    <li><a href="#mobility" data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</a></li>
+                    <li><a href="#sustainability" data-en="Sustainability & Engagement" data-fr="Développement Durable">Sustainability & Engagement</a></li>
+                    <li><a href="#activities" data-en="Sport & Activities" data-fr="Sport & Activités">Sport & Activities</a></li>
+                    <li><a href="#career" data-en="Career Development" data-fr="Projet Professionnel">Career Development</a></li>
                 </ul>
             </nav>
         </div>
@@ -159,57 +248,160 @@
         </div>
     </aside>
 
-    <!-- Contenu Principal -->
+    <!-- Main Content -->
     <main>
 
         <!-- 1. WELCOME -->
         <section id="welcome">
-            <h2>Welcome</h2>
-            <p>Bienvenue sur mon e-Portfolio d'ingénieur ! Je suis actuellement étudiant en première année à l'ENSEEIHT dans la filière Mécanique des Fluides, Énergétique & Environnement (MF2E).</p>
-            <p>Ce site présente mon parcours académique, mes projets d'ingénierie, mes engagements personnels ainsi que mon projet professionnel.</p>
+            <h2 data-en="Welcome" data-fr="Bienvenue">Welcome</h2>
+            <p data-en="Welcome to my engineering e-portfolio! I am currently a first-year engineering student at ENSEEIHT (Toulouse, France), specializing in Fluid Mechanics, Energetics & Environment (MF2E)."
+               data-fr="Bienvenue sur mon e-portfolio d'ingénieur ! Je suis actuellement étudiant en première année à l'ENSEEIHT (Toulouse), spécialisé en Mécanique des Fluides, Énergétique & Environnement (MF2E).">
+               Welcome to my engineering e-portfolio! I am currently a first-year engineering student at ENSEEIHT (Toulouse, France), specializing in Fluid Mechanics, Energetics & Environment (MF2E).
+            </p>
+            <p data-en="This platform showcases my academic journey, engineering projects, civic commitments, and career aspirations."
+               data-fr="Cette plateforme présente mon parcours académique, mes projets d'ingénierie, mes engagements citoyens ainsi que mon projet professionnel.">
+               This platform showcases my academic journey, engineering projects, civic commitments, and career aspirations.
+            </p>
         </section>
 
         <!-- 2. ENGINEERING COURSE -->
         <section id="engineering">
-            <h2>Engineering Course (MF2E)</h2>
-            <p>Présentation de la formation en Mécanique des Fluides, Énergétique et Environnement à l'ENSEEIHT.</p>
-            <p><em>Section dédiée aux projets académiques, travaux pratiques et productions techniques d'ingénieur.</em></p>
+            <h2 data-en="Engineering Course (MF2E)" data-fr="Formation d'Ingénieur (MF2E)">Engineering Course (MF2E)</h2>
+            <p data-en="Overview of my engineering curriculum focused on Fluid Mechanics, Energy Systems, and Environmental Impact."
+               data-fr="Aperçu de mon cursus d'ingénieur axé sur la Mécanique des Fluides, les Systèmes Énergétiques et l'Impact Environnemental.">
+               Overview of my engineering curriculum focused on Fluid Mechanics, Energy Systems, and Environmental Impact.
+            </p>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3 data-en="Fluid Mechanics & Energy" data-fr="Mécanique des Fluides & Énergétique">Fluid Mechanics & Energy</h3>
+                    <p data-en="Thermodynamics, heat transfer, aerodynamics, and fluid dynamics modeling."
+                       data-fr="Thermodynamique, transferts thermiques, aérodyamique et modélisation des fluides.">
+                       Thermodynamics, heat transfer, aerodynamics, and fluid dynamics modeling.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 data-en="Academic Projects" data-fr="Projets Académiques">Academic Projects</h3>
+                    <p data-en="Technical reports, numerical simulations, and hands-on laboratory work."
+                       data-fr="Rapports techniques, simulations numériques et travaux pratiques en laboratoire.">
+                       Technical reports, numerical simulations, and hands-on laboratory work.
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- 3. INTERNATIONAL MOBILITY -->
         <section id="mobility">
-            <h2>International Mobility</h2>
-            <p>Mon projet de mobilité internationale (17 semaines requises dans le cursus N7).</p>
-            <p><em>Inclus mes projets de mobilité alignés avec mes profils modèles, mes certifications de langues (LV2, PCE, etc.).</em></p>
+            <h2 data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</h2>
+            <p data-en="As part of the ENSEEIHT degree requirements, 17 weeks of international experience are required."
+               data-fr="Dans le cadre du diplôme de l'ENSEEIHT, 17 semaines d'expérience à l'international sont requises.">
+               As part of the ENSEEIHT degree requirements, 17 weeks of international experience are required.
+            </p>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3 data-en="Languages & Certifications" data-fr="Langues & Certifications">Languages & Certifications</h3>
+                    <p data-en="English (Targeting B2+/C1 level), LV2, and PCE preparation."
+                       data-fr="Anglais (Objectif niveau B2+/C1), LV2, et préparation au PCE.">
+                       English (Targeting B2+/C1 level), LV2, and PCE preparation.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 data-en="Mobility Target Projects" data-fr="Projets de Mobilité Ciblés">Mobility Target Projects</h3>
+                    <p data-en="Exploration of international internships and academic exchange opportunities."
+                       data-fr="Exploration de stages à l'étranger et d'échanges académiques.">
+                       Exploration of international internships and academic exchange opportunities.
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- 4. SUSTAINABILITY & CIVIC ENGAGEMENT -->
         <section id="sustainability">
-            <h2>Sustainability & Civic Engagement</h2>
-            <p>Mon engagement pour la transition écologique et sociétale (40h d'engagement citoyen requis).</p>
-            <p><em>Exemples d'actions : Fresque du Climat, Clean Walk, Procès de King Kong, etc.</em></p>
+            <h2 data-en="Sustainability & Civic Engagement" data-fr="Développement Durable & Engagement">Sustainability & Civic Engagement</h2>
+            <p data-en="Commitment to ecological transition and societal responsibility (40 hours civic engagement validation)."
+               data-fr="Engagement pour la transition écologique et la responsabilité sociétale (validation de 40h d'engagement citoyen).">
+               Commitment to ecological transition and societal responsibility (40 hours civic engagement validation).
+            </p>
+            <div class="placeholder-box">
+                <p data-en="🌱 Upcoming activities: Climate Fresk, Clean Walk, King Kong Trial, etc."
+                   data-fr="🌱 Activités à venir : Fresque du Climat, Clean Walk, Procès de King Kong, etc.">
+                   🌱 Upcoming activities: Climate Fresk, Clean Walk, King Kong Trial, etc.
+                </p>
+            </div>
         </section>
 
         <!-- 5. SPORT & OTHER ACTIVITIES -->
         <section id="activities">
-            <h2>Sport & Other Activities</h2>
-            <p>Mes activités sportives, passions et projets associatifs développés à l'ENSEEIHT et en dehors.</p>
+            <h2 data-en="Sport & Other Activities" data-fr="Sport & Autres Activités">Sport & Other Activities</h2>
+            <p data-en="Personal development through sports, team activities, and student associations at N7."
+               data-fr="Épanouissement personnel à travers le sport, le travail d'équipe et la vie associative à N7.">
+               Personal development through sports, team activities, and student associations at N7.
+            </p>
         </section>
 
         <!-- 6. CAREER DEVELOPMENT -->
         <section id="career">
-            <h2>Career Development</h2>
-            <p>Cette section regroupe les livrables essentiels pour mon projet professionnel :</p>
-            <ul>
-                <li>CVs en Français et en Anglais</li>
-                <li>Profil LinkedIn (FR / EN)</li>
-                <li>Vidéo Elevator Pitch - Unique Value Proposal (2-3 min en anglais)</li>
-                <li>Analyse de 3 profils modèles (Alumni / My Job Glasses)</li>
-                <li>3 projets de mobilité internationale ciblés</li>
-            </ul>
+            <h2 data-en="Career Development" data-fr="Projet Professionnel">Career Development</h2>
+            <p data-en="Key professional deliverables for the Self-Branding & Marketing module:"
+               data-fr="Livrables professionnels essentiels pour le module Self-Branding & Marketing :">
+               Key professional deliverables for the Self-Branding & Marketing module:
+            </p>
+
+            <div class="grid-cards">
+                <!-- Resume Card -->
+                <div class="card">
+                    <h3 data-en="Resumes (CV)" data-fr="Curriculum Vitae">Resumes (CV)</h3>
+                    <p data-en="Available in French and English." data-fr="Disponibles en français et en anglais.">Available in French and English.</p>
+                    <div class="placeholder-box" style="padding: 1rem;">
+                        <span data-en="📄 Resumes under preparation" data-fr="📄 CVs en cours de préparation">📄 Resumes under preparation</span>
+                    </div>
+                </div>
+
+                <!-- Video Card -->
+                <div class="card">
+                    <h3 data-en="Elevator Pitch Video" data-fr="Vidéo Elevator Pitch">Elevator Pitch Video</h3>
+                    <p data-en="2-3 min Unique Value Proposal (UVP) in English."
+                       data-fr="Vidéo UVP de 2-3 min en anglais (Présent + Passé + Futur).">
+                       2-3 min Unique Value Proposal (UVP) in English.
+                    </p>
+                    <div class="placeholder-box" style="padding: 1rem;">
+                        <span data-en="🎬 Video upload coming soon" data-fr="🎬 Vidéo à venir">🎬 Video upload coming soon</span>
+                    </div>
+                </div>
+
+                <!-- Network / Role Models -->
+                <div class="card">
+                    <h3 data-en="Role Model Analysis" data-fr="Profils Modèles Analysez">Role Model Analysis</h3>
+                    <p data-en="3 Alumni / Industry Expert interviews via My Job Glasses."
+                       data-fr="Analyse de 3 profils modèles / interviews d'alumni.">
+                       3 Alumni / Industry Expert interviews via My Job Glasses.
+                    </p>
+                    <div class="placeholder-box" style="padding: 1rem;">
+                        <span data-en="🔍 Interviews in progress" data-fr="🔍 Entretiens en cours">🔍 Interviews in progress</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
+
+    <!-- JS for Language Switcher -->
+    <script>
+        function setLanguage(lang) {
+            // Update active button style
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            if(lang === 'fr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+
+            // Translate all elements with data-en / data-fr
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if(lang === 'fr' && el.getAttribute('data-fr')) {
+                    el.textContent = el.getAttribute('data-fr');
+                } else if(lang === 'en' && el.getAttribute('data-en')) {
+                    el.textContent = el.getAttribute('data-en');
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
