@@ -146,9 +146,6 @@
             margin-bottom: 1.2rem;
             border-bottom: 2px solid #f1f5f9;
             padding-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         p {
@@ -157,7 +154,120 @@
             font-size: 1rem;
         }
 
-        /* Cards inside sections */
+        /* WELCOME SECTION SPECIFIC STYLES */
+        .welcome-container {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .welcome-text {
+            flex: 1;
+        }
+
+        .welcome-avatar {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .welcome-avatar img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .welcome-avatar img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Status Badge with pulse animation */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* Engineering Tags */
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* Hero Action Buttons */
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.68rem 1.3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Generic Cards */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -184,23 +294,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.8rem;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-        }
-
         .placeholder-box {
             background: #f1f5f9;
             border: 2px dashed #cbd5e1;
@@ -216,6 +309,9 @@
             #sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; width: 100%; padding: 2rem 1.5rem; }
             .lang-switcher { top: 15px; right: 15px; }
+            .welcome-container { flex-direction: column-reverse; text-align: center; }
+            .hero-tags { justify-content: center; }
+            .hero-actions { justify-content: center; }
         }
     </style>
 </head>
@@ -251,17 +347,39 @@
     <!-- Main Content -->
     <main>
 
-        <!-- 1. WELCOME -->
+        <!-- 1. WELCOME / ACCUEIL -->
         <section id="welcome">
-            <h2 data-en="Welcome" data-fr="Bienvenue">Welcome</h2>
-            <p data-en="Welcome to my engineering e-portfolio! I am currently a first-year engineering student at ENSEEIHT (Toulouse, France), specializing in Fluid Mechanics, Energetics & Environment (MF2E)."
-               data-fr="Bienvenue sur mon e-portfolio d'ingénieur ! Je suis actuellement étudiant en première année à l'ENSEEIHT (Toulouse), spécialisé en Mécanique des Fluides, Énergétique & Environnement (MF2E).">
-               Welcome to my engineering e-portfolio! I am currently a first-year engineering student at ENSEEIHT (Toulouse, France), specializing in Fluid Mechanics, Energetics & Environment (MF2E).
-            </p>
-            <p data-en="This platform showcases my academic journey, engineering projects, civic commitments, and career aspirations."
-               data-fr="Cette plateforme présente mon parcours académique, mes projets d'ingénierie, mes engagements citoyens ainsi que mon projet professionnel.">
-               This platform showcases my academic journey, engineering projects, civic commitments, and career aspirations.
-            </p>
+            <div class="welcome-container">
+                <div class="welcome-text">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span data-en="Student Engineer @ ENSEEIHT" data-fr="Élève-Ingénieur @ ENSEEIHT">Student Engineer @ ENSEEIHT</span>
+                    </div>
+
+                    <h2 style="border: none; padding: 0; margin-bottom: 0.5rem; font-size: 2rem;" data-en="Hi, I'm Lucas Bony" data-fr="Bonjour, je suis Lucas Bony">Hi, I'm Lucas Bony</h2>
+
+                    <p data-en="1st year Engineering Student specializing in Fluid Mechanics, Energetics & Environment (MF2E) at ENSEEIHT (Toulouse, France)."
+                       data-fr="Étudiant en 1ère année de diplôme d'ingénieur spécialisé en Mécanique des Fluides, Énergétique & Environnement (MF2E) à l'ENSEEIHT (Toulouse).">
+                       1st year Engineering Student specializing in Fluid Mechanics, Energetics & Environment (MF2E) at ENSEEIHT (Toulouse, France).
+                    </p>
+
+                    <div class="hero-tags">
+                        <span class="tag" data-en="Fluid Mechanics" data-fr="Mécanique des Fluides">Fluid Mechanics</span>
+                        <span class="tag" data-en="Energy Systems" data-fr="Systèmes Énergétiques">Energy Systems</span>
+                        <span class="tag" data-en="Environment" data-fr="Environnement">Environment</span>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#career" class="btn" data-en="View Resumes & Projects" data-fr="Voir mes CVs & Projets">View Resumes & Projects</a>
+                        <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline" data-en="LinkedIn Profile" data-fr="Profil LinkedIn">LinkedIn Profile</a>
+                    </div>
+                </div>
+
+                <div class="welcome-avatar">
+                    <!-- Photo temporaire tirée du dossier images de ton template -->
+                    <img src="images/pic01.jpg" alt="Lucas Bony Photo">
+                </div>
+            </div>
         </section>
 
         <!-- 2. ENGINEERING COURSE -->
@@ -271,22 +389,6 @@
                data-fr="Aperçu de mon cursus d'ingénieur axé sur la Mécanique des Fluides, les Systèmes Énergétiques et l'Impact Environnemental.">
                Overview of my engineering curriculum focused on Fluid Mechanics, Energy Systems, and Environmental Impact.
             </p>
-            <div class="grid-cards">
-                <div class="card">
-                    <h3 data-en="Fluid Mechanics & Energy" data-fr="Mécanique des Fluides & Énergétique">Fluid Mechanics & Energy</h3>
-                    <p data-en="Thermodynamics, heat transfer, aerodynamics, and fluid dynamics modeling."
-                       data-fr="Thermodynamique, transferts thermiques, aérodyamique et modélisation des fluides.">
-                       Thermodynamics, heat transfer, aerodynamics, and fluid dynamics modeling.
-                    </p>
-                </div>
-                <div class="card">
-                    <h3 data-en="Academic Projects" data-fr="Projets Académiques">Academic Projects</h3>
-                    <p data-en="Technical reports, numerical simulations, and hands-on laboratory work."
-                       data-fr="Rapports techniques, simulations numériques et travaux pratiques en laboratoire.">
-                       Technical reports, numerical simulations, and hands-on laboratory work.
-                    </p>
-                </div>
-            </div>
         </section>
 
         <!-- 3. INTERNATIONAL MOBILITY -->
@@ -296,22 +398,6 @@
                data-fr="Dans le cadre du diplôme de l'ENSEEIHT, 17 semaines d'expérience à l'international sont requises.">
                As part of the ENSEEIHT degree requirements, 17 weeks of international experience are required.
             </p>
-            <div class="grid-cards">
-                <div class="card">
-                    <h3 data-en="Languages & Certifications" data-fr="Langues & Certifications">Languages & Certifications</h3>
-                    <p data-en="English (Targeting B2+/C1 level), LV2, and PCE preparation."
-                       data-fr="Anglais (Objectif niveau B2+/C1), LV2, et préparation au PCE.">
-                       English (Targeting B2+/C1 level), LV2, and PCE preparation.
-                    </p>
-                </div>
-                <div class="card">
-                    <h3 data-en="Mobility Target Projects" data-fr="Projets de Mobilité Ciblés">Mobility Target Projects</h3>
-                    <p data-en="Exploration of international internships and academic exchange opportunities."
-                       data-fr="Exploration de stages à l'étranger et d'échanges académiques.">
-                       Exploration of international internships and academic exchange opportunities.
-                    </p>
-                </div>
-            </div>
         </section>
 
         <!-- 4. SUSTAINABILITY & CIVIC ENGAGEMENT -->
@@ -321,17 +407,11 @@
                data-fr="Engagement pour la transition écologique et la responsabilité sociétale (validation de 40h d'engagement citoyen).">
                Commitment to ecological transition and societal responsibility (40 hours civic engagement validation).
             </p>
-            <div class="placeholder-box">
-                <p data-en="🌱 Upcoming activities: Climate Fresk, Clean Walk, King Kong Trial, etc."
-                   data-fr="🌱 Activités à venir : Fresque du Climat, Clean Walk, Procès de King Kong, etc.">
-                   🌱 Upcoming activities: Climate Fresk, Clean Walk, King Kong Trial, etc.
-                </p>
-            </div>
         </section>
 
         <!-- 5. SPORT & OTHER ACTIVITIES -->
         <section id="activities">
-            <h2 data-en="Sport & Other Activities" data-fr="Sport & Autres Activités">Sport & Other Activities</h2>
+            <h2 data-en="Sport & Other Activities" data-fr="Sport & Autres Activités">Sport & Autres Activités</h2>
             <p data-en="Personal development through sports, team activities, and student associations at N7."
                data-fr="Épanouissement personnel à travers le sport, le travail d'équipe et la vie associative à N7.">
                Personal development through sports, team activities, and student associations at N7.
@@ -345,41 +425,6 @@
                data-fr="Livrables professionnels essentiels pour le module Self-Branding & Marketing :">
                Key professional deliverables for the Self-Branding & Marketing module:
             </p>
-
-            <div class="grid-cards">
-                <!-- Resume Card -->
-                <div class="card">
-                    <h3 data-en="Resumes (CV)" data-fr="Curriculum Vitae">Resumes (CV)</h3>
-                    <p data-en="Available in French and English." data-fr="Disponibles en français et en anglais.">Available in French and English.</p>
-                    <div class="placeholder-box" style="padding: 1rem;">
-                        <span data-en="📄 Resumes under preparation" data-fr="📄 CVs en cours de préparation">📄 Resumes under preparation</span>
-                    </div>
-                </div>
-
-                <!-- Video Card -->
-                <div class="card">
-                    <h3 data-en="Elevator Pitch Video" data-fr="Vidéo Elevator Pitch">Elevator Pitch Video</h3>
-                    <p data-en="2-3 min Unique Value Proposal (UVP) in English."
-                       data-fr="Vidéo UVP de 2-3 min en anglais (Présent + Passé + Futur).">
-                       2-3 min Unique Value Proposal (UVP) in English.
-                    </p>
-                    <div class="placeholder-box" style="padding: 1rem;">
-                        <span data-en="🎬 Video upload coming soon" data-fr="🎬 Vidéo à venir">🎬 Video upload coming soon</span>
-                    </div>
-                </div>
-
-                <!-- Network / Role Models -->
-                <div class="card">
-                    <h3 data-en="Role Model Analysis" data-fr="Profils Modèles Analysez">Role Model Analysis</h3>
-                    <p data-en="3 Alumni / Industry Expert interviews via My Job Glasses."
-                       data-fr="Analyse de 3 profils modèles / interviews d'alumni.">
-                       3 Alumni / Industry Expert interviews via My Job Glasses.
-                    </p>
-                    <div class="placeholder-box" style="padding: 1rem;">
-                        <span data-en="🔍 Interviews in progress" data-fr="🔍 Entretiens en cours">🔍 Interviews in progress</span>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>
@@ -387,12 +432,10 @@
     <!-- JS for Language Switcher -->
     <script>
         function setLanguage(lang) {
-            // Update active button style
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
             if(lang === 'fr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
 
-            // Translate all elements with data-en / data-fr
             document.querySelectorAll('[data-en]').forEach(el => {
                 if(lang === 'fr' && el.getAttribute('data-fr')) {
                     el.textContent = el.getAttribute('data-fr');
