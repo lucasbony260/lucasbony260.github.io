@@ -148,6 +148,15 @@
             padding-bottom: 0.6rem;
         }
 
+        h3.section-subtitle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 1.8rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         p {
             margin-bottom: 1rem;
             color: var(--text-dark);
@@ -161,14 +170,8 @@
             gap: 2.5rem;
         }
 
-        .welcome-text {
-            flex: 1;
-        }
-
-        .welcome-avatar {
-            position: relative;
-            flex-shrink: 0;
-        }
+        .welcome-text { flex: 1; }
+        .welcome-avatar { flex-shrink: 0; }
 
         .welcome-avatar img {
             width: 180px;
@@ -180,11 +183,8 @@
             transition: transform 0.3s ease;
         }
 
-        .welcome-avatar img:hover {
-            transform: scale(1.03);
-        }
+        .welcome-avatar img:hover { transform: scale(1.03); }
 
-        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -204,7 +204,6 @@
             height: 8px;
             background-color: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
             animation: pulse 2s infinite;
         }
 
@@ -214,7 +213,6 @@
             100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
-        /* Engineering Tags */
         .hero-tags {
             display: flex;
             flex-wrap: wrap;
@@ -232,12 +230,7 @@
             border: 1px solid #cbd5e1;
         }
 
-        /* Hero Action Buttons */
-        .hero-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
         .btn {
             display: inline-block;
@@ -267,14 +260,100 @@
             color: white;
         }
 
+        /* ENGINEERING SECTION SPECIFIC STYLES */
+        .project-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: #e2e8f0;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-img-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .skill-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.2rem;
+        }
+
+        .skill-card h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
         @media (max-width: 850px) {
             body { flex-direction: column; }
             #sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; width: 100%; padding: 2rem 1.5rem; }
             .lang-switcher { top: 15px; right: 15px; }
             .welcome-container { flex-direction: column-reverse; text-align: center; }
-            .hero-tags { justify-content: center; }
-            .hero-actions { justify-content: center; }
+            .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -346,11 +425,90 @@
 
         <!-- 2. ENGINEERING COURSE -->
         <section id="engineering">
-            <h2 data-en="Engineering Course (MF2E)" data-fr="Formation d'Ingénieur (MF2E)">Engineering Course (MF2E)</h2>
-            <p data-en="Overview of my engineering curriculum focused on Fluid Mechanics, Energetics, and Environmental Impact."
-               data-fr="Aperçu de mon cursus d'ingénieur axé sur la Mécanique des Fluides, l'Énergétique et l'Impact Environnemental.">
-               Overview of my engineering curriculum focused on Fluid Mechanics, Energetics, and Environmental Impact.
+            <h2 data-en="Engineering Course & Projects" data-fr="Formation d'Ingénieur & Projets">Engineering Course & Projects</h2>
+            
+            <p data-en="Discover my scientific projects, fluid dynamics experiments, and technical skill set developed during my engineering studies."
+               data-fr="Découvrez mes projets scientifiques, mes expérimentations en mécanique des fluides et l'ensemble de mes compétences techniques.">
+               Discover my scientific projects, fluid dynamics experiments, and technical skill set developed during my engineering studies.
             </p>
+
+            <!-- SCIENTIFIC PROJECT -->
+            <h3 class="section-subtitle" data-en="🔬 Featured Scientific Project" data-fr="🔬 Projet Scientifique Phare">🔬 Featured Scientific Project</h3>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <div class="project-title" data-en="Physics of Paragliding: Confined Tunnel Flight Analysis" data-fr="La Physique du Parapente : Analyse du Vol en Tunnel Confiné">Physics of Paragliding: Confined Tunnel Flight Analysis</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);" data-en="Prepa T² (Toulouse) • Group of 5 • 6-week R&D Project" data-fr="Prépa T² (Toulouse) • Groupe de 5 • Projet R&D de 6 semaines">Prepa T² (Toulouse) • Group of 5 • 6-week R&D Project</div>
+                    </div>
+                    <span class="project-meta">Fluid Mechanics / Aerodynamics</span>
+                </div>
+
+                <p data-en="Scientific investigation into the world record flight of Patrick von Känel through a 152m horizontal tunnel. We analyzed aerodynamic forces, ground effect, energy conversion ('flare'), and conducted experimental testing in ENSEEIHT laboratories."
+                   data-fr="Étude scientifique portant sur le record du monde de vol en tunnel de 152 m par Patrick von Känel. Analyse des forces aérodynamiques, de l'effet de sol, de la conversion d'énergie ('flare') et réalisation d'essais expérimentaux dans les laboratoires de l'ENSEEIHT.">
+                   Scientific investigation into the world record flight of Patrick von Känel through a 152m horizontal tunnel. We analyzed aerodynamic forces, ground effect, energy conversion ('flare'), and conducted experimental testing in ENSEEIHT laboratories.
+                </p>
+
+                <div class="project-grid">
+                    <div>
+                        <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 0.5rem;" data-en="Key Methodologies & Achievements:" data-fr="Méthodologies & Résultats Clés :">Key Methodologies & Achievements:</h4>
+                        <ul class="skill-list">
+                            <li data-en="Experimental Testing: Measured drag forces in a hydraulic channel using a balance and micro-propeller at ENSEEIHT." data-fr="Essais en laboratoire : Mesure de traînée dans un canal hydraulique avec balance et micro-moulinet à l'N7.">Experimental Testing: Measured drag forces in a hydraulic channel using a balance and micro-propeller at ENSEEIHT.</li>
+                            <li data-en="Aerodynamic Modeling: Evaluated ground effect, lift/drag coefficients, and velocity polars." data-fr="Modélisation Aérodynamique : Évaluation de l'effet de sol, des coefficients $C_z / C_x$ et de la polaire des vitesses.">Aerodynamic Modeling: Evaluated ground effect, lift/drag coefficients, and velocity polars.</li>
+                            <li data-en="Scientific Communication: Authored a detailed LaTeX report and delivered an oral defense." data-fr="Communication Scientifique : Rédaction d'un rapport complet sous LaTeX et soutenance orale en équipe.">Scientific Communication: Authored a detailed LaTeX report and delivered an oral defense.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-img-box">
+                        <!-- Image du TP laboratoire tirée du rapport -->
+                        <img src="images/pic02.jpg" alt="ENSEEIHT Hydraulic Lab Experiment">
+                    </div>
+                </div>
+
+                <div class="hero-tags" style="margin-top: 1rem; margin-bottom: 0;">
+                    <span class="tag">Fluid Dynamics</span>
+                    <span class="tag">LaTeX</span>
+                    <span class="tag">Hydraulic Channel Testing</span>
+                    <span class="tag">Teamwork</span>
+                </div>
+            </div>
+
+            <!-- SKILLS SUBSECTION -->
+            <h3 class="section-subtitle" data-en="💻 Technical & Soft Skills" data-fr="💻 Compétences Techniques & Transverses">💻 Technical & Soft Skills</h3>
+
+            <div class="skills-grid">
+                <!-- Programming -->
+                <div class="skill-card">
+                    <h4 data-en="Programming & Numerical Modeling" data-fr="Informatique & Modélisation">Programming & Numerical Modeling</h4>
+                    <ul class="skill-list">
+                        <li>Python (Data analysis & scripting)</li>
+                        <li>Fortran 90 (Scientific computing)</li>
+                        <li>SQL (Database management)</li>
+                        <li>LaTeX (Scientific document editing)</li>
+                    </ul>
+                </div>
+
+                <!-- Engineering Software -->
+                <div class="skill-card">
+                    <h4 data-en="Engineering & Thermal Software" data-fr="Logiciels Métier CVC & Thermique">Engineering & Thermal Software</h4>
+                    <ul class="skill-list">
+                        <li>Pléiades COMFIE (Building thermal simulation)</li>
+                        <li>Emersus (LCA & RE2020 environmental compliance)</li>
+                        <li>MS Office Suite (Word, Excel, PowerPoint)</li>
+                    </ul>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-card">
+                    <h4 data-en="Soft Skills & Management" data-fr="Compétences Transverses">Soft Skills & Management</h4>
+                    <ul class="skill-list">
+                        <li data-en="Project Management & Teamwork (6-week R&D project)" data-fr="Gestion de Projet & Travail d'équipe (projet R&D de 6 semaines)">Project Management & Teamwork (6-week R&D project)</li>
+                        <li data-en="Problem Solving & Critical Thinking" data-fr="Analyse & Résolution de problèmes complexes">Problem Solving & Critical Thinking</li>
+                        <li data-en="Scientific & Oral Communication" data-fr="Communication scientifique orale et écrite">Scientific & Oral Communication</li>
+                    </ul>
+                </div>
+            </div>
+
         </section>
 
         <!-- 3. INTERNATIONAL MOBILITY -->
