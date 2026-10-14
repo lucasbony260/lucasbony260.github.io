@@ -344,6 +344,10 @@
             font-weight: bold;
         }
 
+        /* Classe pour masquer un élément selon la langue */
+        .fr-only { display: flex; }
+        body.lang-en .fr-only { display: none !important; }
+
         @media (max-width: 850px) {
             body { flex-direction: column; }
             #sidebar { width: 100%; height: auto; position: relative; }
@@ -354,7 +358,7 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-en">
 
     <!-- Language Selector -->
     <div class="lang-switcher">
@@ -436,7 +440,7 @@
                 <div class="project-header">
                     <div>
                         <div class="project-title" data-en="Physics of paragliding: Confined tunnel flight analysis" data-fr="La physique du parapente : analyse du vol en tunnel confiné">Physics of paragliding: Confined tunnel flight analysis</div>
-                        <div style="font-size: 0.9rem; color: var(--text-muted);" data-en="Prepa T² (Toulouse) • Group of 5 • 6-week project" data-fr="Prépa T² (Toulouse) • Groupe de 5 • Projet de 6 semaines">Prepa T² (Toulouse) • Group of 5 • Projet de 6 semaines</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);" data-en="Prepa T² (Toulouse) • Group of 5 • 6-week project" data-fr="Prépa T² (Toulouse) • Groupe de 5 • Projet de 6 semaines">Prepa T² (Toulouse) • Group of 5 • 6-week project</div>
                     </div>
                     <span class="project-meta" data-en="Fluid Mechanics / Aerodynamics" data-fr="Mécanique des fluides / Aérodynamique">Fluid Mechanics / Aerodynamics</span>
                 </div>
@@ -500,7 +504,7 @@
                     <ul class="skill-list">
                         <li data-en="Project management and teamwork" data-fr="Travail en équipe et gestion de projet">Project management and teamwork</li>
                         <li data-en="Problem solving and critical thinking" data-fr="Analyse et résolution de problèmes, raisonnement critique">Problem solving and critical thinking</li>
-                        <li data-en="Scientific communication (written and oral)" data-fr="Communication orale et écrite">Scientific communication (written and oral)</li>
+                        <li class="fr-only" data-fr="Communication orale et écrite">Communication orale et écrite</li>
                     </ul>
                 </div>
             </div>
@@ -611,8 +615,14 @@
     <script>
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
-            if(lang === 'fr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            if(lang === 'en') {
+                document.querySelectorAll('.lang-btn')[0].classList.add('active');
+                document.body.classList.add('lang-en');
+            }
+            if(lang === 'fr') {
+                document.querySelectorAll('.lang-btn')[1].classList.add('active');
+                document.body.classList.remove('lang-en');
+            }
 
             document.querySelectorAll('[data-en]').forEach(el => {
                 if(lang === 'fr' && el.getAttribute('data-fr')) {
