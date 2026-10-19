@@ -344,6 +344,91 @@
             font-weight: bold;
         }
 
+        /* CAREER & ROLE MODELS STYLES */
+        .experience-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .experience-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid #cbd5e1;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .experience-content { flex: 1; }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .model-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .model-card:hover, .model-card.active {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.12);
+        }
+
+        .model-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem auto;
+            border: 3px solid var(--accent);
+        }
+
+        .model-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .model-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .model-detail-box {
+            display: none;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-top: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .model-detail-box.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Classe pour masquer un élément selon la langue */
         .fr-only { display: flex; }
         body.lang-en .fr-only { display: none !important; }
@@ -355,6 +440,7 @@
             .lang-switcher { top: 15px; right: 15px; }
             .welcome-container { flex-direction: column-reverse; text-align: center; }
             .project-grid { grid-template-columns: 1fr; }
+            .experience-card { flex-direction: column; }
         }
     </style>
 </head>
@@ -375,10 +461,10 @@
                 <ul>
                     <li><a href="#welcome" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
                     <li><a href="#engineering" data-en="Engineering Course" data-fr="Formation d'Ingénieur">Engineering Course</a></li>
+                    <li><a href="#career" data-en="Career Development" data-fr="Projet Professionnel">Career Development</a></li>
                     <li><a href="#mobility" data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</a></li>
                     <li><a href="#sustainability" data-en="Sustainability & Engagement" data-fr="Développement durable et engagement">Sustainability & Engagement</a></li>
                     <li><a href="#activities" data-en="Sport & Activities" data-fr="Sport et autres activités">Sport & Activities</a></li>
-                    <li><a href="#career" data-en="Career Development" data-fr="Projet Professionnel">Career Development</a></li>
                 </ul>
             </nav>
         </div>
@@ -511,7 +597,125 @@
 
         </section>
 
-        <!-- 3. INTERNATIONAL MOBILITY -->
+        <!-- 3. CAREER DEVELOPMENT -->
+        <section id="career">
+            <h2 data-en="Career Development" data-fr="Projet Professionnel">Career Development</h2>
+            
+            <p data-en="Key professional deliverables, past professional achievements, and inspiring professional models driving my engineering ambition."
+               data-fr="Livrables professionnels majeurs, expériences passées et modèles d'inspiration guidant mes ambitions d'ingénieur.">
+               Key professional deliverables, past professional achievements, and inspiring professional models driving my engineering ambition.
+            </p>
+
+            <!-- RESUME & LINKS SUBSECTION -->
+            <h3 class="section-subtitle" data-en="Resume & Digital Profiles" data-fr="Mon CV et profil numérique">Resume & Digital Profiles</h3>
+
+            <div class="project-card">
+                <p data-en="Download my resume in French or English and connect with me on LinkedIn:"
+                   data-fr="Téléchargez mon CV en version française ou anglaise et découvrez mon profil LinkedIn :">
+                   Download my resume in French or English and connect with me on LinkedIn:
+                </p>
+
+                <div class="hero-actions" style="margin-top: 1rem;">
+                    <a href="CV-BONY-Lucas.pdf" download target="_blank" class="btn" data-en="📄 Download CV (French)" data-fr="📄 Télécharger le CV (Français)">📄 Télécharger le CV (Français)</a>
+                    <a href="Resume-BONY-Lucas.pdf" download target="_blank" class="btn" data-en="📄 Download Resume (English)" data-fr="📄 Télécharger le CV (Anglais)">📄 Télécharger le CV (Anglais)</a>
+                    <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline" data-en="🔗 LinkedIn Profile" data-fr="🔗 Profil LinkedIn">🔗 Profil LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- PAST EXPERIENCES SUBSECTION -->
+            <h3 class="section-subtitle" data-en="Professional Experience" data-fr="Expériences professionnelles">Professional Experience</h3>
+
+            <div class="experience-card">
+                <img src="images/logo-ferme.png" alt="Exploitation Agricole Logo" class="experience-logo">
+                <div class="experience-content">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title" data-en="Agricultural Worker — Family Farm" data-fr="Ouvrier agricole — Exploitation familiale">Agricultural Worker — Family Farm</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted);" data-en="Tarn, France • Seasonal / Regular" data-fr="Tarn • Saisonnière / Régulière">Tarn • Saisonnière / Régulière</div>
+                        </div>
+                        <span class="project-meta" data-en="Field & Operations" data-fr="Opérations de terrain">Field & Operations</span>
+                    </div>
+                    <ul class="skill-list">
+                        <li data-en="Operations management: dairy milking, livestock care, and field tasks" data-fr="Gestion des opérations : traite bovine, soins au cheptel et travaux des champs">Gestion des opérations : traite bovine, soins au cheptel et travaux des champs</li>
+                        <li data-en="Equipment operation: tractor driving and handling of heavy machinery" data-fr="Conduite et gestion de matériel : pilotage de tracteurs et maniement d'engins agricoles">Conduite et gestion de matériel : pilotage de tracteurs et maniement d'engins agricoles</li>
+                        <li data-en="Key soft skills: autonomy, physical rigor, work ethic, and adaptability" data-fr="Compétences clés : autonomie, rigueur physique, valeur du travail et réactivité">Compétences clés : autonomie, rigueur physique, valeur du travail et réactivité</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <img src="images/logo-bde.png" alt="BDE Prepa T² Logo" class="experience-logo">
+                <div class="experience-content">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title" data-en="Student Board Manager — BDE Prepa T²" data-fr="Responsable Pôle — BDE Prépa T²">Student Board Manager — BDE Prepa T²</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted);" data-en="Toulouse, France • 2024 – 2025" data-fr="Toulouse • 2024 – 2025">Toulouse • 2024 – 2025</div>
+                        </div>
+                        <span class="project-meta" data-en="Student Leadership" data-fr="Vie associative">Student Leadership</span>
+                    </div>
+                    <ul class="skill-list">
+                        <li data-en="Event planning and budget execution for student activities" data-fr="Organisation d'événements et suivi du budget pour la communauté étudiante">Organisation d'événements et suivi du budget pour la communauté étudiante</li>
+                        <li data-en="Team coordination, communication, and logistics oversight" data-fr="Coordination d'équipe, communication interne et gestion de la logistique">Coordination d'équipe, communication interne et gestion de la logistique</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- INSPIRING MODELS / ROLE MODELS SUBSECTION -->
+            <h3 class="section-subtitle" data-en="Inspiring Professional Models" data-fr="Modèles inspirants">Inspiring Professional Models</h3>
+
+            <p data-en="As part of our self-branding module, I reached out to three inspiring engineering professionals to better understand career opportunities and industry challenges:"
+               data-fr="Dans le cadre du module Self-Branding, j'ai contacté trois professionnels inspirants pour échanger sur leur parcours et anticiper les enjeux du métier d'ingénieur :">
+               As part of our self-branding module, I reached out to three inspiring engineering professionals to better understand career opportunities and industry challenges:
+            </p>
+
+            <div class="models-grid">
+                <!-- Model 1 -->
+                <div class="model-card" onclick="showModelDetail(1)">
+                    <img src="images/modele1.jpg" alt="Modèle 1" class="model-avatar">
+                    <div class="model-name">Modèle 1 [À remplacer]</div>
+                    <div class="model-role" data-en="Ingénieur Fluides / Énergie" data-fr="Ingénieur Fluides / Énergie">Ingénieur Fluides / Énergie</div>
+                    <div class="tag" style="margin-top: 0.8rem; display: inline-block;" data-en="Click for details" data-fr="Cliquer pour voir">Cliquer pour voir</div>
+                </div>
+
+                <!-- Model 2 -->
+                <div class="model-card" onclick="showModelDetail(2)">
+                    <img src="images/modele2.jpg" alt="Modèle 2" class="model-avatar">
+                    <div class="model-name">Modèle 2 [À remplacer]</div>
+                    <div class="model-role" data-en="Chef de Projet Environnement" data-fr="Chef de Projet Environnement">Chef de Projet Environnement</div>
+                    <div class="tag" style="margin-top: 0.8rem; display: inline-block;" data-en="Click for details" data-fr="Cliquer pour voir">Cliquer pour voir</div>
+                </div>
+
+                <!-- Model 3 -->
+                <div class="model-card" onclick="showModelDetail(3)">
+                    <img src="images/modele3.jpg" alt="Modèle 3" class="model-avatar">
+                    <div class="model-name">Modèle 3 [À remplacer]</div>
+                    <div class="model-role" data-en="Ingénieur R&D Énergétique" data-fr="Ingénieur R&D Énergétique">Ingénieur R&D Énergétique</div>
+                    <div class="tag" style="margin-top: 0.8rem; display: inline-block;" data-en="Click for details" data-fr="Cliquer pour voir">Cliquer pour voir</div>
+                </div>
+            </div>
+
+            <!-- Detail Boxes -->
+            <div id="model-detail-1" class="model-detail-box">
+                <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-en="Detail — Model 1" data-fr="Détails — Modèle 1">Détails — Modèle 1</h4>
+                <p><strong>Poste & Entreprise :</strong> [À compléter par le nom de l'entreprise et du poste précis]</p>
+                <p><strong>Raison du choix :</strong> [Expliquer pourquoi ce parcours t'inspire, ce que cet échange t'a apporté et en quoi cela éclaire ton projet professionnel].</p>
+            </div>
+
+            <div id="model-detail-2" class="model-detail-box">
+                <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-en="Detail — Model 2" data-fr="Détails — Modèle 2">Détails — Modèle 2</h4>
+                <p><strong>Poste & Entreprise :</strong> [À compléter par le nom de l'entreprise et du poste précis]</p>
+                <p><strong>Raison du choix :</strong> [Expliquer pourquoi ce parcours t'inspire, ce que cet échange t'a apporté et en quoi cela éclaire ton projet professionnel].</p>
+            </div>
+
+            <div id="model-detail-3" class="model-detail-box">
+                <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-en="Detail — Model 3" data-fr="Détails — Modèle 3">Détails — Modèle 3</h4>
+                <p><strong>Poste & Entreprise :</strong> [À compléter par le nom de l'entreprise et du poste précis]</p>
+                <p><strong>Raison du choix :</strong> [Expliquer pourquoi ce parcours t'inspire, ce que cet échange t'a apporté et en quoi cela éclaire ton projet professionnel].</p>
+            </div>
+
+        </section>
+
+        <!-- 4. INTERNATIONAL MOBILITY -->
         <section id="mobility">
             <h2 data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</h2>
             
@@ -582,7 +786,7 @@
 
         </section>
 
-        <!-- 4. SUSTAINABILITY AND ENGAGEMENT -->
+        <!-- 5. SUSTAINABILITY AND ENGAGEMENT -->
         <section id="sustainability">
             <h2 data-en="Sustainability & Engagement" data-fr="Développement durable et engagement">Sustainability & Engagement</h2>
             
@@ -592,13 +796,13 @@
             </p>
 
             <!-- SOCIETAL AWARENESS SUBSECTION -->
-            <h3 class="section-subtitle" data-en="Societal Awareness and Civic Engagement" data-fr="Sensibilisation sociétale et engagement citoyen">Societal Awareness and Civic Engagement</h3>
+            <h3 class="section-subtitle" data-en="Societal Awareness and Civic Engagement" data-fr="Sensibilisation sociétale et engagement citoyen">Sensibilisation sociétale et engagement citoyen</h3>
 
             <div class="project-card">
                 <div class="project-header">
                     <div>
                         <div class="project-title" data-en="Interactive theater on student life and professional integration" data-fr="Théâtre interactif sur la vie étudiante et l'intégration professionnelle">Interactive theater on student life and professional integration</div>
-                        <div style="font-size: 0.9rem; color: var(--text-muted);" data-en="Prepa T² & ENSEEIHT • Interactive theater" data-fr="Prépa T² & ENSEEIHT • Théâtre interactif">Prepa T² & ENSEEIHT • Interactive theater</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);" data-en="Prepa T² & ENSEEIHT • Interactive theater" data-fr="Prépa T² & ENSEEIHT • Théâtre interactif">Prepa T² & ENSEEIHT • Théâtre interactif</div>
                     </div>
                     <span class="project-meta" data-en="Civic Engagement" data-fr="Engagement citoyen">Civic Engagement</span>
                 </div>
@@ -620,9 +824,9 @@
                 </ul>
 
                 <div class="hero-tags" style="margin-bottom: 0;">
-                    <span class="tag" data-en="Societal Awareness" data-fr="Sensibilisation sociétale">Societal Awareness</span>
+                    <span class="tag" data-en="Societal Awareness" data-fr="Sensibilisation sociétale">Sensibilisation sociétale</span>
                     <span class="tag" data-en="Student Life" data-fr="Vie étudiante">Student Life</span>
-                    <span class="tag" data-en="Professional Inclusion" data-fr="Inclusion professionnelle">Professional Inclusion</span>
+                    <span class="tag" data-en="Professional Inclusion" data-fr="Inclusion professionnelle">Inclusion professionnelle</span>
                 </div>
             </div>
 
@@ -669,7 +873,7 @@
 
         </section>
 
-        <!-- 5. SPORT & ACTIVITIES -->
+        <!-- 6. SPORT & ACTIVITIES -->
         <section id="activities">
             <h2 data-en="Sport & Activities" data-fr="Sport et autres activités">Sport & Activities</h2>
             
@@ -704,18 +908,9 @@
 
         </section>
 
-        <!-- 6. CAREER DEVELOPMENT -->
-        <section id="career">
-            <h2 data-en="Career Development" data-fr="Projet Professionnel">Career Development</h2>
-            <p data-en="Key professional deliverables for the Self-Branding & Marketing module:"
-               data-fr="Livrables professionnels essentiels pour le module Self-Branding & Marketing :">
-               Key professional deliverables for the Self-Branding & Marketing module:
-            </p>
-        </section>
-
     </main>
 
-    <!-- JS for Language Switcher -->
+    <!-- JS for Language Switcher & Role Models Interactivity -->
     <script>
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -733,6 +928,24 @@
                     el.textContent = el.getAttribute('data-fr');
                 } else if(lang === 'en' && el.getAttribute('data-en')) {
                     el.textContent = el.getAttribute('data-en');
+                }
+            });
+        }
+
+        function showModelDetail(index) {
+            document.querySelectorAll('.model-card').forEach((card, i) => {
+                if (i === index - 1) {
+                    card.classList.toggle('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.model-detail-box').forEach((box, i) => {
+                if (i === index - 1) {
+                    box.classList.toggle('active');
+                } else {
+                    box.classList.remove('active');
                 }
             });
         }
