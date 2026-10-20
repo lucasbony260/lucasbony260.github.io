@@ -430,6 +430,81 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* VIDEO SECTION STYLES */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 1rem auto 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* CONTACT SECTION STYLES */
+        section#contact {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+        }
+
+        section#contact h2 {
+            color: #ffffff;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        section#contact p {
+            color: #e0f2fe;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .contact-card h4 {
+            color: #93c5fd;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-card a, .contact-card p.contact-val {
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
         /* Classe pour masquer un élément selon la langue */
         .fr-only { display: flex; }
         body.lang-en .fr-only { display: none !important; }
@@ -442,6 +517,7 @@
             .welcome-container { flex-direction: column-reverse; text-align: center; }
             .project-grid { grid-template-columns: 1fr; }
             .experience-card { flex-direction: column; }
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -461,11 +537,13 @@
             <nav>
                 <ul>
                     <li><a href="#welcome" data-en="Welcome" data-fr="Accueil">Welcome</a></li>
+                    <li><a href="#pitch" data-en="Pitch Video" data-fr="Elevator Pitch">Pitch Video</a></li>
                     <li><a href="#engineering" data-en="Engineering Course" data-fr="Formation d'Ingénieur">Engineering Course</a></li>
                     <li><a href="#career" data-en="Career Development" data-fr="Projet professionnel">Career Development</a></li>
                     <li><a href="#mobility" data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</a></li>
                     <li><a href="#sustainability" data-en="Sustainability & Engagement" data-fr="Développement durable et engagement">Sustainability & Engagement</a></li>
                     <li><a href="#activities" data-en="Sport & Activities" data-fr="Sport et autres activités">Sport & Activities</a></li>
+                    <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -501,7 +579,7 @@
 
                     <div class="hero-actions">
                         <a href="#career" class="btn" data-en="View my Resume" data-fr="Voir mon CV">View my Resume</a>
-                        <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline" data-en="LinkedIn Profile" data-fr="Profil LinkedIn">LinkedIn Profile</a>
+                        <a href="https://www.linkedin.com/in/lucas-bony-030008192" target="_blank" class="btn btn-outline" data-en="LinkedIn Profile" data-fr="Profil LinkedIn">LinkedIn Profile</a>
                     </div>
                 </div>
 
@@ -511,7 +589,23 @@
             </div>
         </section>
 
-        <!-- 2. ENGINEERING COURSE -->
+        <!-- 2. ELEVATOR PITCH VIDEO -->
+        <section id="pitch">
+            <h2 data-en="Elevator Pitch Video" data-fr="Vidéo de présentation">Elevator Pitch Video</h2>
+            <p data-en="Short video presentation introducing my background, my engineering specialization at ENSEEIHT, and my career ambitions."
+               data-fr="Courte vidéo de présentation introduisant mon parcours, ma spécialisation d'ingénieur à l'ENSEEIHT et mes ambitions professionnelles.">
+               Short video presentation introducing my background, my engineering specialization at ENSEEIHT, and my career ambitions.
+            </p>
+
+            <div class="video-container">
+                <video controls poster="images/photoo.jpg">
+                    <source src="videos/elevator-pitch.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- 3. ENGINEERING COURSE -->
         <section id="engineering">
             <h2 data-en="Engineering Course" data-fr="Formation d'Ingénieur">Engineering Course</h2>
             
@@ -571,7 +665,7 @@
                         <li data-en="Python (Data analysis & scripting)" data-fr="Python (bases, analyse de données)">Python (Data analysis & scripting)</li>
                         <li data-en="Fortran 90 (Scientific computing)" data-fr="Fortran 90 (bases, calcul scientifique)">Fortran 90 (Scientific computing)</li>
                         <li data-en="SQL (Database management)" data-fr="SQL (bases de données)">SQL (Database management)</li>
-                        <li data-en="LaTeX (Scientific editing)" data-fr="LaTeX (rédaction scientifique)">LaTeX (Scientific editing)</li>
+                        <li data-en="LaTeX (Scientific editing)" data-fr="LaTeX (rédaction scientifique)">LaTeX (rédaction scientifique)</li>
                     </ul>
                 </div>
 
@@ -598,14 +692,14 @@
 
         </section>
 
-        <!-- 3. CAREER DEVELOPMENT -->
+        <!-- 4. CAREER DEVELOPMENT -->
         <section id="career">
             <h2 data-en="Career Development" data-fr="Projet professionnel">Career Development</h2>
             
             <div class="hero-actions" style="margin-bottom: 2rem;">
                 <a href="CV-BONY-Lucas.pdf" download target="_blank" class="btn" data-en="Download CV (French)" data-fr="Télécharger le CV (Français)">Télécharger le CV (Français)</a>
                 <a href="Resume-BONY-Lucas.pdf" download target="_blank" class="btn" data-en="Download Resume (English)" data-fr="Télécharger le CV (Anglais)">Télécharger le CV (Anglais)</a>
-                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline" data-en="LinkedIn Profile" data-fr="Profil LinkedIn">Profil LinkedIn</a>
+                <a href="https://www.linkedin.com/in/lucas-bony-030008192" target="_blank" class="btn btn-outline" data-en="LinkedIn Profile" data-fr="Profil LinkedIn">Profil LinkedIn</a>
             </div>
 
             <!-- PAST EXPERIENCES SUBSECTION -->
@@ -616,14 +710,15 @@
                 <div class="experience-content">
                     <div class="project-header">
                         <div>
-                            <div class="project-title" data-en="Assistant Engineer Intern - SOCONER" data-fr="Stagiaire assistant ingénieur - SOCONER">Stagiaire assistant ingénieur - SOCONER</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);" data-en="Toulouse, France • May - June 2024" data-fr="Toulouse • Mai - Juin 2024">Toulouse • Mai - Juin 2024</div>
+                            <div class="project-title" data-en="Thermal & HVAC Engineering Intern - SOCONER" data-fr="Stagiaire ingénierie thermique et CVC - SOCONER">Stagiaire ingénierie thermique et CVC - SOCONER</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted);" data-en="Toulouse, France • May - June 2026" data-fr="Toulouse • Mai - Juin 2026">Toulouse • Mai - Juin 2026</div>
                         </div>
                         <span class="project-meta" data-en="Thermal & HVAC Engineering" data-fr="Bureau d'études thermique et CVC">Bureau d'études thermique et CVC</span>
                     </div>
                     <ul class="skill-list">
-                        <li data-en="Thermal study and building energy performance auditing" data-fr="Réalisation d'études thermiques et d'audits énergétiques du bâtiment">Réalisation d'études thermiques et d'audits énergétiques du bâtiment</li>
-                        <li data-en="HVAC sizing, technical specifications review, and site visits" data-fr="Dimensionnement des équipements CVC, étude des cahiers des charges et visites de terrain">Dimensionnement des équipements CVC, étude des cahiers des charges et visites de terrain</li>
+                        <li data-en="Dynamic Thermal Simulation (STD): Modeling on Pléiades software and HVAC systems sizing" data-fr="Simulation Thermique Dynamique (STD) : Modélisation sur Pléiades et dimensionnement CVC">Simulation Thermique Dynamique (STD) : Modélisation sur Pléiades et dimensionnement CVC</li>
+                        <li data-en="Low-Carbon Engineering (RE2020): Carbon impact calculation on Emersus (INIES/FDES database)" data-fr="Ingénierie Bas Carbone (RE2020) : Calcul de l'impact carbone sur Emersus (base INIES/FDES)">Ingénierie Bas Carbone (RE2020) : Calcul de l'impact carbone sur Emersus (base INIES/FDES)</li>
+                        <li data-en="Environmental Management & Site Audits: BREEAM process monitoring, site meetings, and technical measurements" data-fr="Management environnemental et terrain : Suivi sous démarche BREEAM, réunions de chantier et relevés sur site">Management environnemental et terrain : Suivi sous démarche BREEAM, réunions de chantier et relevés sur site</li>
                     </ul>
                 </div>
             </div>
@@ -639,8 +734,9 @@
                         <span class="project-meta" data-en="Seasonal Contract" data-fr="Emploi saisonnier">Emploi saisonnier</span>
                     </div>
                     <ul class="skill-list">
-                        <li data-en="Roofing installation, timber structure work, and safety standards compliance" data-fr="Pose de couverture, travaux de charpente et application stricte des normes de sécurité">Pose de couverture, travaux de charpente et application stricte des normes de sécurité</li>
-                        <li data-en="Demonstrated endurance, teamwork, and operational reliability on site" data-fr="Rigueur de travail, endurance physique et esprit d'équipe sur le terrain">Rigueur de travail, endurance physique et esprit d'équipe sur le terrain</li>
+                        <li data-en="Roofing operations: complete roof installation (uncovering, insulation, tile laying)" data-fr="Réalisation complète de toitures (découverture, isolation, pose de tuiles)">Réalisation complète de toitures (découverture, isolation, pose de tuiles)</li>
+                        <li data-en="Eco-construction: work on Écoartisan / RGE certified sites using sustainable materials" data-fr="Éco-construction : participation à des chantiers labellisés Écoartisan / RGE et matériaux durables">Éco-construction : participation à des chantiers labellisés Écoartisan / RGE et matériaux durables</li>
+                        <li data-en="On-site teamwork and technical coordination with electricians, tinsmiths, and plasterers" data-fr="Travail en équipe sur chantier et coordination avec d'autres corps de métier">Travail en équipe sur chantier et coordination avec d'autres corps de métier</li>
                     </ul>
                 </div>
             </div>
@@ -656,8 +752,8 @@
                         <span class="project-meta" data-en="Seasonal Contract" data-fr="Emploi saisonnier">Emploi saisonnier</span>
                     </div>
                     <ul class="skill-list">
-                        <li data-en="Public infrastructure maintenance, technical support, and local logistics" data-fr="Entretien des infrastructures publiques, interventions techniques et soutien logistique municipal">Entretien des infrastructures publiques, interventions techniques et soutien logistique municipal</li>
-                        <li data-en="Autonomy, versatility, and dedication to public service" data-fr="Autonomie, polyvalence et sens du service public">Autonomie, polyvalence et sens du service public</li>
+                        <li data-en="Routine maintenance of public buildings and communal green spaces" data-fr="Entretien courant des bâtiments et espaces publics">Entretien courant des bâtiments et espaces publics</li>
+                        <li data-en="Public infrastructure development and roadway works" data-fr="Travaux d'aménagement et de voirie">Travaux d'aménagement et de voirie</li>
                     </ul>
                 </div>
             </div>
@@ -665,7 +761,7 @@
             <!-- INSPIRING MODELS / ROLE MODELS SUBSECTION -->
             <h3 class="section-subtitle" data-en="Role Models" data-fr="Modèles inspirants">Role Models</h3>
 
-            <p data-en="Discussion with 3 inspiring professionals to exchange on their career paths and anticipate the challenges of the engineering profession:"
+            <p data-en="I had the opportunity to speak with inspiring professionals to exchange on their career paths and anticipate the challenges of the engineering profession:"
                data-fr="J'ai pu m'entretenir avec 3 professionnels inspirants pour échanger sur leur parcours et anticiper les enjeux du métier d'ingénieur :">
                J'ai pu m'entretenir avec 3 professionnels inspirants pour échanger sur leur parcours et anticiper les enjeux du métier d'ingénieur :
             </p>
@@ -682,15 +778,15 @@
                 <!-- Model 2 -->
                 <div class="model-card" onclick="showModelDetail(2)">
                     <img src="images/modele2.png" alt="Modèle 2" class="model-avatar">
-                    <div class="model-name">Modèle 2</div>
+                    <div class="model-name" data-en="Model 2" data-fr="Modèle 2">Modèle 2</div>
                     <div class="model-role" data-en="Environmental Project Manager" data-fr="Chef de projet environnement">Chef de projet environnement</div>
                     <div class="tag" style="margin-top: 0.8rem; display: inline-block;" data-en="Click for details" data-fr="Cliquer pour voir">Cliquer pour voir</div>
                 </div>
 
-                <!-- Model 3 (À réactiver lors du 3ème échange) -->
+                <!-- Model 3 -->
                 <div class="model-card" onclick="showModelDetail(3)">
                     <img src="images/modele1.jpg" alt="Modèle 3" class="model-avatar">
-                    <div class="model-name">Modèle 3</div>
+                    <div class="model-name" data-en="Model 3" data-fr="Modèle 3">Modèle 3</div>
                     <div class="model-role" data-en="R&D Energy Engineer" data-fr="Ingénieur R&D énergétique">Ingénieur R&D énergétique</div>
                     <div class="tag" style="margin-top: 0.8rem; display: inline-block;" data-en="Click for details" data-fr="Cliquer pour voir">Cliquer pour voir</div>
                 </div>
@@ -699,25 +795,35 @@
             <!-- Detail Boxes -->
             <div id="model-detail-1" class="model-detail-box">
                 <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Hervé Poplawski</h4>
-                <p><strong>Poste et entreprise :</strong> Ingénieur responsable projet (Avant-vente, chiffrage et soutien technique aux appels d'offres) chez Veolia Water Technologies & Solutions (VWTS).</p>
-                <p><strong>Analyse de l'échange :</strong> Cet échange m'a permis de mieux cerner le métier d'ingénieur projet d'affaires dans l'eau industrielle. J'ai découvert la réalité du chiffrage technique et de la réponse aux appels d'offres, à la frontière entre expertise scientifique, coordination d'experts et stratégie commerciale. Son retour confirme qu'un profil d'étudiant N7 en Mécanique des Fluides et Environnement est particulièrement adapté aux enjeux transversaux du traitement d'eau (génie civil, électricité, procédés). Enfin, ses conseils m'ont éclairé sur l'importance de développer de la polyvalence et de réaliser un stage à l'international en pays anglophone pour renforcer mon futur positionnement.</p>
+                <p><strong data-en="Position & Company:" data-fr="Poste et entreprise :">Poste et entreprise :</strong> 
+                   <span data-en="Project Manager Engineer (Pre-sales, estimation, and technical support for tenders) at Veolia Water Technologies & Solutions (VWTS)."
+                         data-fr="Ingénieur responsable projet (Avant-vente, chiffrage et soutien technique aux appels d'offres) chez Veolia Water Technologies & Solutions (VWTS).">
+                         Ingénieur responsable projet (Avant-vente, chiffrage et soutien technique aux appels d'offres) chez Veolia Water Technologies & Solutions (VWTS).
+                   </span>
+                </p>
+                <p><strong data-en="Exchange Analysis:" data-fr="Analyse de l'échange :">Analyse de l'échange :</strong> 
+                   <span data-en="This exchange allowed me to better understand the role of a business project engineer in industrial water treatment. I discovered the reality of technical estimation and tender responses, at the intersection of scientific expertise, expert coordination, and commercial strategy. His feedback confirms that an N7 student profile in Fluid Mechanics & Environment is particularly suited to cross-functional water treatment challenges (civil engineering, electricity, processes). Finally, his advice highlighted the importance of developing versatility and completing an international internship in an English-speaking country to strengthen my future positioning."
+                         data-fr="Cet échange m'a permis de mieux cerner le métier d'ingénieur projet d'affaires dans l'eau industrielle. J'ai découvert la réalité du chiffrage technique et de la réponse aux appels d'offres, à la frontière entre expertise scientifique, coordination d'experts et stratégie commerciale. Son retour confirme qu'un profil d'étudiant N7 en Mécanique des Fluides et Environnement est particulièrement adapté aux enjeux transversaux du traitement d'eau (génie civil, électricité, procédés). Enfin, ses conseils m'ont éclairé sur l'importance de développer de la polyvalence et de réaliser un stage à l'international en pays anglophone pour renforcer mon futur positionnement.">
+                         Cet échange m'a permis de mieux cerner le métier d'ingénieur projet d'affaires dans l'eau industrielle. J'ai découvert la réalité du chiffrage technique et de la réponse aux appels d'offres, à la frontière entre expertise scientifique, coordination d'experts et stratégie commerciale. Son retour confirme qu'un profil d'étudiant N7 en Mécanique des Fluides et Environnement est particulièrement adapté aux enjeux transversaux du traitement d'eau (génie civil, électricité, procédés). Enfin, ses conseils m'ont éclairé sur l'importance de développer de la polyvalence et de réaliser un stage à l'international en pays anglophone pour renforcer mon futur positionnement.
+                   </span>
+                </p>
             </div>
 
             <div id="model-detail-2" class="model-detail-box">
                 <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-en="Detail - Model 2" data-fr="Détails - Modèle 2">Détails - Modèle 2</h4>
-                <p><strong>Poste et entreprise :</strong> [À compléter par le nom de l'entreprise et du poste]</p>
-                <p><strong>Analyse de l'échange :</strong> [Explication synthétique de l'échange et des enseignements tirés pour ton projet professionnel].</p>
+                <p><strong data-en="Position & Company:" data-fr="Poste et entreprise :">Poste et entreprise :</strong> [To be completed / À compléter]</p>
+                <p><strong data-en="Exchange Analysis:" data-fr="Analyse de l'échange :">Analyse de l'échange :</strong> [To be completed / À compléter]</p>
             </div>
 
             <div id="model-detail-3" class="model-detail-box">
                 <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem;" data-en="Detail - Model 3" data-fr="Détails - Modèle 3">Détails - Modèle 3</h4>
-                <p><strong>Poste et entreprise :</strong> [À compléter par le nom de l'entreprise et du poste]</p>
-                <p><strong>Analyse de l'échange :</strong> [Explication synthétique de l'échange et des enseignements tirés pour ton projet professionnel].</p>
+                <p><strong data-en="Position & Company:" data-fr="Poste et entreprise :">Poste et entreprise :</strong> [To be completed / À compléter]</p>
+                <p><strong data-en="Exchange Analysis:" data-fr="Analyse de l'échange :">Analyse de l'échange :</strong> [To be completed / À compléter]</p>
             </div>
 
         </section>
 
-        <!-- 4. INTERNATIONAL MOBILITY -->
+        <!-- 5. INTERNATIONAL MOBILITY -->
         <section id="mobility">
             <h2 data-en="International Mobility" data-fr="Mobilité Internationale">International Mobility</h2>
             
@@ -788,7 +894,7 @@
 
         </section>
 
-        <!-- 5. SUSTAINABILITY AND ENGAGEMENT -->
+        <!-- 6. SUSTAINABILITY AND ENGAGEMENT -->
         <section id="sustainability">
             <h2 data-en="Sustainability & Engagement" data-fr="Développement durable et engagement">Sustainability & Engagement</h2>
             
@@ -875,7 +981,7 @@
 
         </section>
 
-        <!-- 6. SPORT & ACTIVITIES -->
+        <!-- 7. SPORT & ACTIVITIES -->
         <section id="activities">
             <h2 data-en="Sport & Activities" data-fr="Sport et autres activités">Sport & Activities</h2>
             
@@ -908,6 +1014,33 @@
                 </ul>
             </div>
 
+        </section>
+
+        <!-- 8. CONTACT SECTION -->
+        <section id="contact">
+            <h2 data-en="Contact" data-fr="Contact">Contact</h2>
+            
+            <p data-en="Feel free to reach out to me for an internship, a project, or simply to connect."
+               data-fr="N'hésitez pas à me contacter pour un stage, un projet ou un simple échange.">
+               N'hésitez pas à me contacter pour un stage, un projet ou un simple échange.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4 data-en="Institutional Email" data-fr="Email institutionnel">Email institutionnel</h4>
+                    <a href="mailto:lucas.bony@etu.toulouse-inp.fr">lucas.bony@etu.toulouse-inp.fr</a>
+                </div>
+
+                <div class="contact-card">
+                    <h4 data-en="Phone" data-fr="Téléphone">Téléphone</h4>
+                    <a href="tel:+33622655632">+33 6 22 65 56 32</a>
+                </div>
+
+                <div class="contact-card">
+                    <h4 data-en="LinkedIn Profile" data-fr="Profil LinkedIn">Profil LinkedIn</h4>
+                    <a href="https://www.linkedin.com/in/lucas-bony-030008192" target="_blank" data-en="linkedin.com/in/lucas-bony" data-fr="linkedin.com/in/lucas-bony">linkedin.com/in/lucas-bony</a>
+                </div>
+            </div>
         </section>
 
     </main>
